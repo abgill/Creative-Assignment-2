@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<canvas id="gameCanvas" width="500" height="500"></canvas>
+
+<form>
+    <h1 id="scoreBoard"></h1>
+    <h1 id="remainingGuesses">Remaining Guesses:</h1>
+    <input type="text" id="guessWord" maxlength="1">
+    <input type="submit" value="Make Guess" id="guessButton">
+
+</form>
+
+
+<form>
+
+<input id="wordLen" type="number" min="3" max="10" value="3">
+<input id="submitButton" type="submit" value="Submit">
+</form>
+
+<script>
+    var canvas = $("#gameCanvas").get(0);
+    var ctx = canvas.getContext("2d");
+
+    var secretWord = "";
+    var guessWord = "";
+
+    var gameState = 0;
+    var remainingGuesses = 0;
+
+
+    $(document).ready(function () {
+
+        $("#guessButton").click(function (e) {
+            e.preventDefault();
+
+            remainingGuesses--;
+            $("#remainingGuesses").html("Remaining Guesses: " + remainingGuesses);
+
+
+
+        });
+
+        $("#submitButton").click(function (e) {
+            e.preventDefault();
+
+            remainingGuesses = 6;
+
+            var myurl = "http://setgetgo.com/randomword/get.php?len=" + $("#wordLen").val();
+            $.ajax({
+                type: "GET",
+                url : myurl,
+                dataType : "jsonp",
+                success : function(parsed_json) {
+                    secretWord = parsed_json.Word.toLowerCase();
+                    console.log(secretWord);
+
+                    guessWord = "";
+
+                    for(var i = 0; i < parseInt($("#wordLen").val()); i++){
+                        guessWord = guessWord.concat('-');
+                    }
+                    $("#scoreBoard").html(guessWord);
+                }
+            });
+            $("#remainingGuesses").html("Remaining Guesses: " + remainingGuesses);
+            //var randWord = data.Word;
+        });
+    });
+</script>
+
+</body>
+</html>
