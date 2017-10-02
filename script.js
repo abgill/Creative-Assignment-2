@@ -7,8 +7,24 @@ var remainingGuesses = 0;
 
 function drawBoard() {
 
-    if(remainingGuesses === 5){
+    if(remainingGuesses === 7){
+        $("#hangmanPic").attr("src","Hangman_8.jpg");
+    }
+    else if(remainingGuesses === 6){
+        $("#hangmanPic").attr("src","Hangman_7.jpg");
+    }
+    else if(remainingGuesses === 5){
+        $("#hangmanPic").attr("src","Hangman_6.jpg");
+    }else if(remainingGuesses === 4){
         $("#hangmanPic").attr("src","Hangman_5.jpg");
+    }else if(remainingGuesses === 3){
+        $("#hangmanPic").attr("src","Hangman_4.jpg");
+    }else if(remainingGuesses === 2){
+        $("#hangmanPic").attr("src","Hangman_3.jpg");
+    }else if(remainingGuesses === 1){
+        $("#hangmanPic").attr("src","Hangman_2.jpg");
+    }else if(remainingGuesses === 0){
+        $("#hangmanPic").attr("src","Hangman_1.jpg");
     }
 }
 
