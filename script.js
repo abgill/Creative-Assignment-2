@@ -1,5 +1,3 @@
-var canvas = $("#gameCanvas").get(0);
-var ctx = canvas.getContext("2d");
 
 var secretWord = "";
 var guessWord = "";
@@ -8,12 +6,9 @@ var remainingGuesses = 0;
 
 
 function drawBoard() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if(remainingGuesses === 5){
-        ctx.beginPath();
-        ctx.arc(100,75,50,0,2*Math.PI);
-        ctx.stroke();
+        $("#hangmanPic").attr("src","Hangman_5.jpg");
     }
 }
 
@@ -57,7 +52,7 @@ $(document).ready(function () {
     $("#submitButton").click(function (e) {
         e.preventDefault();
 
-        remainingGuesses = 6;
+        remainingGuesses = 7;
 
         var wordLength = $("#wordLen").val();
 
