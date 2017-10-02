@@ -59,13 +59,15 @@ $(document).ready(function () {
 
         remainingGuesses = 6;
 
-        var myurl = "http://setgetgo.com/randomword/get.php?len=" + $("#wordLen").val();
+        var wordLength = $("#wordLen").val();
+
+        var myurl = "http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=false&excludePartOfSpeech=family-name&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=" + wordLength + "&maxLength="+ wordLength + "&limit=1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5";
         $.ajax({
             type: "GET",
             url : myurl,
-            dataType : "jsonp",
+            dataType : "json",
             success : function(parsed_json) {
-                secretWord = parsed_json.Word.toLowerCase();
+                secretWord = parsed_json[0].word.toLowerCase();
                 console.log(secretWord);
 
                 guessWord = "";
