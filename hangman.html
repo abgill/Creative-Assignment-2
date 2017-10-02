@@ -30,8 +30,18 @@
     var secretWord = "";
     var guessWord = "";
 
-    var gameState = 0;
     var remainingGuesses = 0;
+
+
+    function drawBoard() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if(remainingGuesses === 5){
+            ctx.beginPath();
+            ctx.arc(100,75,50,0,2*Math.PI);
+            ctx.stroke();
+        }
+    }
 
     function setCharAt(str,index,chr) {
         if(index > str.length-1) return str;
@@ -50,8 +60,13 @@
                 }
                 $("#scoreBoard").html(guessWord);
             }
+
+            if(guessWord === secretWord){
+                $("#scoreBoard").html("You Win!!!");
+            }
         }
 
+        drawBoard();
         $("#remainingGuesses").html("Remaining Guesses: " + remainingGuesses);
 
     }
@@ -62,10 +77,6 @@
             e.preventDefault();
 
             makeGuess($("#guessWord").val());
-
-
-
-
 
         });
 
