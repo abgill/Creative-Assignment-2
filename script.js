@@ -36,7 +36,7 @@ function setCharAt(str,index,chr) {
 
 function makeGuess(letter) {
 
-    if(secretWord.indexOf(letter) === -1){
+    if(secretWord.indexOf(letter) === -1 && remainingGuesses >0){
         remainingGuesses--;
     } else{
         for(var i = 0; i < secretWord.length; i++){
@@ -48,6 +48,8 @@ function makeGuess(letter) {
 
         if(guessWord === secretWord){
             $("#scoreBoard").html("You Win!!!");
+        } else if(remainingGuesses <= 0){
+            $("#scoreBoard").html("You Lose!!!");
         }
     }
 
@@ -92,6 +94,7 @@ $(document).ready(function () {
             }
         });
         $("#remainingGuesses").html("Remaining Guesses: " + remainingGuesses);
+        drawBoard();
         //var randWord = data.Word;
     });
 });
