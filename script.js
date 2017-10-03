@@ -36,6 +36,8 @@ function setCharAt(str,index,chr) {
 
 function makeGuess(letter) {
 
+    letter = letter.toLowerCase();
+
     if(secretWord.indexOf(letter) === -1 && remainingGuesses >0){
         remainingGuesses--;
     } else{
