@@ -38,6 +38,10 @@ function makeGuess(letter) {
 
     letter = letter.toLowerCase();
 
+    if(secretWord.length === 0){
+        return;
+    }
+
     if(secretWord.indexOf(letter) === -1 && remainingGuesses >0){
         remainingGuesses--;
     } else{
@@ -49,9 +53,9 @@ function makeGuess(letter) {
         }
 
         if(guessWord === secretWord){
-            $("#scoreBoard").html("You Win!!!");
+            $("#scoreBoard").html("You Win! The word is " + secretWord );
         } else if(remainingGuesses <= 0){
-            $("#scoreBoard").html("You Lose!!!");
+            $("#scoreBoard").html("You Lose! The word is " + secretWord);
         }
     }
 
