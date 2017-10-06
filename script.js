@@ -53,9 +53,9 @@ function makeGuess(letter) {
         }
 
         if(guessWord === secretWord){
-            $("#scoreBoard").html("You Win! The word is " + secretWord );
+            $("#scoreBoard").html("You Win!<br>The word is " + secretWord );
         } else if(remainingGuesses <= 0){
-            $("#scoreBoard").html("You Lose! The word is " + secretWord);
+            $("#scoreBoard").html("You Lose!<br>The word is " + secretWord);
         }
     }
 
